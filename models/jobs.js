@@ -2,9 +2,9 @@ const { Model, DataTypes, DECIMAL } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class jobsPosted extends Model {}
+class jobs extends Model {}
 
-jobsPosted.init(
+jobs.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -23,7 +23,7 @@ jobsPosted.init(
         //this will hold job title and if remote or in person. 
     },
     salary: {
-            type:DataTypes.DECIMAL,
+            type:DataTypes.STRING,
             allowNull:false
         
     },
@@ -33,18 +33,24 @@ jobsPosted.init(
         //this will show hours, and if remote or in person
     },
     description:{
-        type:DataTypes.STRING,
-        allowNull:false
-        //this will describe the responsibilities and expectations for position. 
+        type:DataTypes.TEXT,
+        allowNull:true
+        //this describes the  expectations for position. 
     },
-    required_skills:{
-        type:DataTypes.STRING,
+    responsibilities:{
+      type:DataTypes.TEXT,
+      allowNull:true
+        //this will describe the responsibilities for the position
+
+    },
+    qualifications:{
+        type:DataTypes.TEXT,
         allowNull:false
         //this will describe the skills and education requirements, and experience level 
     },
     company_email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: true,
       validate: {
         isEmail: true,
@@ -59,8 +65,8 @@ jobsPosted.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user',
+    modelName: 'jobs',
   }
 );
 
-module.exports = jobsPosted;
+module.exports = jobs;

@@ -20,6 +20,17 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    role:{
+      type:DataTypes.ENUM({
+        values:["applicant","company"]
+      }),
+      allowNull:false
+    },
+      business_name: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+
     email: {
       type: DataTypes.STRING,
       allowNull: false,

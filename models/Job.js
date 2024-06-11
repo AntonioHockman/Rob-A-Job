@@ -2,9 +2,9 @@ const { Model, DataTypes, DECIMAL } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class jobs extends Model {}
+class Job extends Model {}
 
-jobs.init(
+Job.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -48,14 +48,7 @@ jobs.init(
         allowNull:false
         //this will describe the skills and education requirements, and experience level 
     },
-    company_email: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      unique: true,
-      validate: {
-        isEmail: true,
-      },
-    },
+  
  
    },
   {
@@ -65,8 +58,8 @@ jobs.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'jobs',
+    modelName: 'job',
   }
 );
 
-module.exports = jobs;
+module.exports = Job;

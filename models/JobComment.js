@@ -2,9 +2,9 @@ const { Model, DataTypes, DECIMAL } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class UserJob extends Model {}
+class JobComment extends Model {}
 
-UserJob.init(
+JobComment.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,9 +12,9 @@ UserJob.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    userId:{
+    commentId:{
         type:DataTypes.INTEGER,
-        references:{model:"user",key:"id"}
+        references:{model:"comment",key:"id"}
     },
     jobId:{
         type:DataTypes.INTEGER,
@@ -32,4 +32,4 @@ UserJob.init(
   }
 );
 
-module.exports = UserJob;
+module.exports = JobComment;

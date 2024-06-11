@@ -35,7 +35,7 @@ const jobData = [
 ]
 
 
-const seedjob = () => Product.bulkCreate(jobData);
+const seedjob = () => jobData.bulkCreate(jobData);
 
 module.exports = seedjob;
 

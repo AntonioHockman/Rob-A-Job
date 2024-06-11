@@ -24,4 +24,4 @@ const userJobData = [
   
 ];
 
-const seedUserJobData = () => ProductTag.bulkCreate(userJobData);
+const seedUserJobData = () => UserJob.bulkCreate(userJobData);

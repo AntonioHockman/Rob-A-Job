@@ -1,8 +1,30 @@
 const User =require("./User")
 const Job = require("./Job")
-const UserJob = require("./UserJob")
+const Comment = require("./Comment")
 
-User.belongsToMany(Job,{through:UserJob,foreignKey:"userId"})
-Job.belongsToMany(User,{through:UserJob,foreignKey:"jobId"})
+Job.hasMany(Comment,{foreignKey:"jobId"})
 
-module.exports={User,Job,UserJob}
+Comment.belongsTo(Job,{
+    foreignKey:"jobId"
+})
+
+
+
+User.hasMany(Job,{
+    foreignKey:"jobId"
+})
+
+Job.belongsTo(User,{
+    foreignKey:"userId"
+})
+
+User.hasMany(Comment,{
+    foreignKey:"userId"
+})
+
+Comment.belongsTo(User,{
+    foreignKey:"userId"
+})
+
+module.exports={User,Job,Comment}
+

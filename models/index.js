@@ -1,6 +1,6 @@
 const User = require("./User");
-const jobPosts = require("./jobpost");
-const applicant = require("./applicant");
+const Job = require("./jobpost");
+const Applicant = require("./Applicant");
 
 
 jobPosts.belongsTo(User, {

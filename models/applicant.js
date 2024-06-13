@@ -2,9 +2,9 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 // Above, are the imports we need for this module
 
-class applicant extends Model {}
+class Applicant extends Model {}
 
-applicant.init(
+Applicant.init(
   {
     id: {
       type: DataTypes.INTEGER,

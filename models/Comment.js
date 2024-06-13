@@ -11,7 +11,7 @@ Comment.init({
         primaryKey: true,
         autoIncrement: true,
       },
-      comment_title:{
+      comment_text:{
         type: DataTypes.STRING,
         allowNull:true,
       },
@@ -19,7 +19,7 @@ Comment.init({
         type:DataTypes.TEXT,
         allowNull:false,
       },
-      jobId:{
+      job_id:{
         type:DataTypes.INTEGER,
         allowNull:false,
         references: {

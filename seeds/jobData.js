@@ -35,8 +35,8 @@ const jobData = [
 ]
 
 
-const seedjob = () => jobData.bulkCreate(jobData);
+const seedJobData = () => Job.bulkCreate(jobData);
 
-module.exports = seedjob;
+module.exports = seedJobData;
 
 //starting with a few job postings for now to see, to see if it will work properly before adding more. 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rob-A-Job</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo">Rob-A-Job</h1>
+        <nav class="nav">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Dashboard</a>
+            <a href="#" class="nav-link">Login</a>
+            <a href="#" class="nav-link">Business User</a>
+        </nav>
+    </header>
+    <div class="card-container">
+        <div class="card" data-job-id="job1">
+            <div class="applicant-count" id="job1-applicant-count">Applicants: 0</div>
+            <div class="card-body">
+                <h5 class="card-title">Senior Front-End Developer</h5>
+                <p class="card-text"> Kabia Tech LLC. Looking for Senior Front-End Developer with a minimum of 5-year experience.</p>
+                <a href="#" class="btn btn-primary">VIEW JOB</a>
+            </div>
+            <!-- Comment Section -->
+            <div class="comment-section">
+                <form class="comment-form" onsubmit="addComment(event, 'job1-comments', 'job1-applicant-count')">
+                    <textarea class="comment-input" placeholder="Add a comment..." required></textarea>
+                    <button type="submit" class="btn btn-secondary">Post Comment</button>
+                </form>
+                <div class="comments" id="job1-comments">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card" data-job-id="job2">
+            <div class="applicant-count" id="job2-applicant-count">Applicants: 0</div>
+            <div class="card-body">
+                <h5 class="card-title">Junior Back-End Developer</h5>
+                <p class="card-text">MooreCorp Inc. Seeking a Junior Back-End Developer with a passion for coding.</p>
+                <a href="#" class="btn btn-primary">VIEW JOB</a>
+            </div>
+            <!-- Comment Section -->
+            <div class="comment-section">
+                <form class="comment-form" onsubmit="addComment(event, 'job2-comments', 'job2-applicant-count')">
+                    <textarea class="comment-input" placeholder="Add a comment..." required></textarea>
+                    <button type="submit" class="btn btn-secondary">Post Comment</button>
+                </form>
+                <div class="comments" id="job2-comments">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card" data-job-id="job3">
+            <div class="applicant-count" id="job3-applicant-count">Applicants: 0</div>
+            <div class="card-body">
+                <h5 class="card-title">Project Manager</h5>
+             <p class="card-text">Thomas Solutions Inc. Needs an experienced Project Manager to lead teams.</p>
+             <a href="#" class="btn btn-primary">VIEW JOB</a>
+             <div class="comment-section">
+                <form class="comment-form" onsubmit="addComment(event, 'job3-comments', 'job3-applicant-count')">
+                    <textarea class="comment-input" placeholder="Add a comment..." required></textarea>
+                    <button type="submit" class="btn btn-secondary">Post Comment</button>
+                </form>
+                <div class="comments" id="job3-comments">

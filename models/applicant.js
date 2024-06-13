@@ -2,9 +2,9 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 // Above, are the imports we need for this module
 
-class applicant extends Model {}
+class Applicant extends Model {}
 
-applicant.init(
+Applicant.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -28,19 +28,11 @@ applicant.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "job_posts",
+        model: "job",
         key: "id",
         // Above, is a foriegn key to a job post 
       },
     },
-
-
-
-
-
-
-
-
 
   },
   {
@@ -52,5 +44,5 @@ applicant.init(
   }
 );
 
-module.exports = applicant;
+module.exports = Applicant;
 // Above, we export the model 

@@ -1,4 +1,4 @@
-const { applicant } = require('../models');
+const { Applicant } = require('../models');
 // Above we impot the model 
 
 const applicantData = [
@@ -42,7 +42,7 @@ const applicantData = [
 ];
 // Above is our seeds inputs
 
-const seedapplicantData = () => applicant.bulkCreate(applicantData);
+const seedapplicantData = () => Applicant.bulkCreate(applicantData);
 // ABove is our function to bulk create inputs into the applicant table.
 
 

@@ -1,4 +1,4 @@
-const {jobPosts} = require("../models")
+const Job = require("../models/Job")
 // Above, we import jobPosts because that is the model we will create the entries in.
 
 const jobData = [
@@ -37,7 +37,7 @@ const jobData = [
 ]
 
 
-const seedjob = () => jobPosts.bulkCreate(jobData);
+const seedjob = () => Job.bulkCreate(jobData);
 // Above, is our arrow function to bulk create the entries in job data. 
 
 module.exports = seedjob;

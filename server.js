@@ -9,14 +9,6 @@ const PORT = process.env.PORT || 3001;
 // ABove is a instance of our server and the recognized port.
 
 
-
-
-
-
-
-
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -26,7 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 // Above, we instruct our server to use the provided routes.
-
 
 
 sequelize.sync({ force: false }).then(() => {

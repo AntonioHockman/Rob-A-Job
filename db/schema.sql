@@ -1,2 +1,3 @@
-DROP DATABASE IF EXISTS rob_a_job;
-CREATE DATABASE rob_a_job;
+DROP DATABASE IF EXISTS robjob_db;
+
+CREATE DATABASE robjob_db;

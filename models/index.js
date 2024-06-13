@@ -1,8 +1,45 @@
-const User =require("./User")
-const Job = require("./Job")
-const UserJob = require("./UserJob")
+const User = require("./User");
+const jobPosts = require("./jobpost");
+const applicant = require("./applicant");
 
-User.belongsToMany(Job,{through:UserJob,foreignKey:"userId"})
-Job.belongsToMany(User,{through:UserJob,foreignKey:"jobId"})
 
-module.exports={User,Job,UserJob}
+jobPosts.belongsTo(User, {
+  foreignKey: "user_id",
+});
+
+// jobPosts belongs to User.
+
+User.hasMany(jobPosts, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE",
+});
+// user  have many job posts
+
+
+applicant.belongsTo(jobPosts, {
+  foreignKey: "job_id",
+});
+
+jobPosts.hasMany(applicant, {
+  foreignKey: "job_id",
+  onDelete: "CASCADE",
+});
+
+
+applicant.belongsTo(User, {
+  foreignKey: "user_id",
+});
+
+
+User.hasMany(applicant, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE",
+});
+
+
+
+
+
+
+
+module.exports = { User, jobPosts, applicant };

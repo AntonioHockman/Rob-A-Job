@@ -1,12 +1,11 @@
-const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
+const bcrypt = require("bcrypt");
 
-class User extends Model {
-  checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
-  }
-}
+// Above, are our requried impots for this model
+
+
+class User extends Model {}
 
 User.init(
   {
@@ -16,19 +15,14 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    first_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    role:{
-      type:DataTypes.ENUM({
-        values:["applicant","company"]
-      }),
-      allowNull:false
-    },
-      business_name: {
-        type: DataTypes.STRING,
-        allowNull: true,
+
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
 
     email: {
@@ -44,21 +38,29 @@ User.init(
       allowNull: false,
       validate: {
         len: [8],
+        // Above, Password has a min length of 8
       },
     },
   },
   {
     hooks: {
-      beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
+      beforeCreate: async (user) => {
+        user.password = await bcrypt.hash(user.password, 10);
+        return user;
+      },
+      beforeUpdate: async (user) => {
+        if (user.changed("password")) {
+          user.password = await bcrypt.hash(user.password, 10);
+          return user;
+        }
       },
     },
+    // Above, are hooks used to has the pw before creating.
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user',
+    modelName: "user",
   }
 );
 

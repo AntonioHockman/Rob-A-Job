@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Job }  = require('../../models');
 
 
-router.post('/', async (req, res) => {
+router.post('/jobs', async (req, res) => {
     // create a new job
     try {
       const jobData = await Job.create(req.body);
@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     }
   });
   
-router.put('/:id', async (req, res) => {
+router.put('/jobs/:id', async (req, res) => {
   // update a job by its `id` value
   try {
     const jobData = await Job.update(req.body, {
@@ -31,7 +31,7 @@ router.put('/:id', async (req, res) => {
   }
 });
   
-router.delete('/:id', async (req, res) => {
+router.delete('/jobs/:id', async (req, res) => {
   // delete a job by its `id` value
   try {
     const jobData = await Job.destroy({

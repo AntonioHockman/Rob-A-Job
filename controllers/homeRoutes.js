@@ -6,16 +6,15 @@ const { User, Job, Applicant } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
-    const userData = await User.findAll({
-      include: [{ model: Job }, { model: Applicant }],
-    });
+    const userData = await Job.findAll();
 
     if (!userData) {
       res.status(404).json({ message: "No data found!" });
       return;
     }
-
-    res.status(200).json(userData);
+const jobs = userData.map((job)=>job.get({plain:true}))
+console.log(jobs)
+    res.render("homepage",{jobs})
   } catch (err) {
     res.status(500).json(err);
   }
@@ -57,6 +56,31 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get("/login", (req,res)=>{
+  try {
+    res.render("login")
+  } catch (error) {
+    console.error(error)
+    res.status(500).json()
+  }
+})
+router.get("/signup", (req,res)=>{
+  try {
+    res.render("signup")
+  } catch (error) {
+    console.error(error)
+    res.status(500).json()
+  }
+})
+router.get("/admin", (req,res)=>{
+  try {
+    res.render("admin")
+  } catch (error) {
+    console.error(error)
+    res.status(500).json()
+  }
+})
 
 // Above, I am just checking if i can retrive the data
 

@@ -1,0 +1,18 @@
+<section class="homepage">
+    <div class="imagecontainer">
+        <img id="robajob" src="/images/Robajob.png"/>
+    </div>
+    <section>
+        {{#each jobs as |job|}}
+        <div>
+           <h3>{{job.company_info}}</h3>
+           <p>{{job.position_title}}</p>
+           <p>{{job.salary}}</p>
+           <p>{{job.schedule_info}}</p> 
+           <p>{{job.description}}</p> 
+           <p>{{job.responsibilities}}</p> 
+           <p>{{job.qualifications}}</p> 
+        </div>
+        {{/each}}
+    </section>
+</section>

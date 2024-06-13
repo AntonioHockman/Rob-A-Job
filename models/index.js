@@ -1,37 +1,37 @@
 const User = require("./User");
-const Job = require("./jobpost");
+const Job = require("./Job");
 const Applicant = require("./Applicant");
 
 
-jobPosts.belongsTo(User, {
+Job.belongsTo(User, {
   foreignKey: "user_id",
 });
 
-// jobPosts belongs to User.
+// Job belongs to User.
 
-User.hasMany(jobPosts, {
+User.hasMany(Job, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
 });
 // user  have many job posts
 
 
-applicant.belongsTo(jobPosts, {
+Applicant.belongsTo(Job, {
   foreignKey: "job_id",
 });
 
-jobPosts.hasMany(applicant, {
+Job.hasMany(Applicant, {
   foreignKey: "job_id",
   onDelete: "CASCADE",
 });
 
 
-applicant.belongsTo(User, {
+Applicant.belongsTo(User, {
   foreignKey: "user_id",
 });
 
 
-User.hasMany(applicant, {
+User.hasMany(Applicant, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
 });
@@ -42,4 +42,4 @@ User.hasMany(applicant, {
 
 
 
-module.exports = { User, jobPosts, applicant };
+module.exports = { User, Job, Applicant };

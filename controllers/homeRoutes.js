@@ -1,13 +1,13 @@
 const router = require("express").Router();
-const { User, jobPosts, applicant } = require("../models");
-const Job = require("../models/jobpost");
+const { User, Job, Applicant } = require("../models");
 
 //const withAuth = require('../utils/auth');
+
 
 router.get("/", async (req, res) => {
   try {
     const userData = await User.findAll({
-      include: [{ model: jobPosts }, { model: applicant }],
+      include: [{ model: Job }, { model: Applicant }],
     });
 
     if (!userData) {
@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const JobData = await jobPosts.findByPk(req.params.id, {
+    const JobData = await Job.findByPk(req.params.id, {
        /*include: [
         {
           model: applicant,
@@ -34,7 +34,7 @@ router.get("/:id", async (req, res) => {
       attributes: { exclude: "password" }*/
 
       include: [
-        {  model: User },{model: applicant, include:[{
+        {  model: User },{model: Applicant, include:[{
           model: User
         },]}]
 

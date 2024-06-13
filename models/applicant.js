@@ -28,19 +28,11 @@ Applicant.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "job_posts",
+        model: "job",
         key: "id",
         // Above, is a foriegn key to a job post 
       },
     },
-
-
-
-
-
-
-
-
 
   },
   {
@@ -52,5 +44,5 @@ Applicant.init(
   }
 );
 
-module.exports = applicant;
+module.exports = Applicant;
 // Above, we export the model 

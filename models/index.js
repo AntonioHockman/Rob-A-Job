@@ -1,6 +1,7 @@
 const User = require("./User");
 const Job = require("./Job");
-const Applicant = require("./Applicant");
+const Applicant = require("./applicant");
+const Comment = require("./Comment");
 
 
 Job.belongsTo(User, {
@@ -36,10 +37,30 @@ User.hasMany(Applicant, {
   onDelete: "CASCADE",
 });
 
+//comment to job relations below
+
+Job.hasMany(Comment,{
+  foreignKey:"job_id" } );
+
+Comment.belongsTo(Job,{
+foreignKey:"job_id"
+})
+
+//user to comment relation
+
+User.hasMany(Comment,{
+  foreignKey:"user_id"
+});
+
+
+Comment.belongsTo(User,{
+  foreign_key:"user_id"
+});
 
 
 
 
 
 
-module.exports = { User, Job, Applicant };
+
+module.exports = { User, Job, Applicant, Comment};

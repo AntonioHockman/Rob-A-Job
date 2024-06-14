@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class jobPost extends Model {}
+class Job extends Model {}
 
-jobPost.init(
+Job.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,10 +11,10 @@ jobPost.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    company_info: {
+    company_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      //this will hold company name and adress
+      //this will hold company name
     },
     position_title: {
       type: DataTypes.STRING,
@@ -46,6 +46,11 @@ jobPost.init(
       allowNull: false,
       //this will describe the skills and education requirements, and experience level
     },
+    location:{
+      type:DataTypes.STRING,
+      allowNull:false,
+      //this will be fore the location of company or if remote
+    },
 
     user_id: {
       type: DataTypes.INTEGER,
@@ -65,4 +70,4 @@ jobPost.init(
   }
 );
 
-module.exports = jobPost;
+module.exports = Job;

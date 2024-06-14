@@ -1,5 +1,5 @@
 const { Applicant } = require('../models');
-// Above we impot the model 
+// Above we import the model
 
 const applicantData = [
   {

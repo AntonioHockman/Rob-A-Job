@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require("sequelize");
-
 const sequelize = require("../config/connection");
 
 class Job extends Model {}
@@ -12,10 +11,10 @@ Job.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    company_info: {
+    company_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      //this will hold company name and adress
+      //this will hold company name
     },
     position_title: {
       type: DataTypes.STRING,
@@ -46,6 +45,11 @@ Job.init(
       type: DataTypes.TEXT,
       allowNull: false,
       //this will describe the skills and education requirements, and experience level
+    },
+    location:{
+      type:DataTypes.STRING,
+      allowNull:false,
+      //this will be fore the location of company or if remote
     },
 
     user_id: {

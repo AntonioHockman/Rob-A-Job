@@ -4,16 +4,76 @@ const { User, Job, Applicant } = require("../models");
 //const withAuth = require('../utils/auth');
 
 // homepage with signup/login form
-router.get('/', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/jobs');
-    return;
+router.get("/", async (req, res) => {
+  try {
+    const jobData = await Job.findAll({
+      include: [
+        {
+          model: Applicant,
+          include: [{ model: User, attributes: { exclude: ["password"] } }],
+        },
+      ],
+    });
+
+    // Above we get all jobs for our hompage and ther applicants.
+
+    if (!jobData) {
+      res.status(404).json({ message: "No data found!" });
+      return;
+    }
+
+    // Above, if there is no job data we send a message saying no data found!
+
+    const jobDataWithCounts = await Promise.all(
+      // Above, we use promise.all to chain promises
+      jobData.map(async (job) => {
+        // Above, we do  async map through our job data
+        const totalApplicants = await Applicant.count({
+          where: {
+            job_id: job.id,
+          },
+        });
+        // Above , while mapping through the data we ask to get the applicant count where the applicant job_id equlas the same id in the job table.
+
+        return {
+          ...job.toJSON(), // Convert Sequelize instance to plain object
+          totalApplicants, // Add totalApplicants property
+        };
+
+        // Above, we return this data in json and spread object to copy the job object and add a new property total applicants.
+      })
+    );
+
+    res.status(200).render("homepage", {
+      jobDataWithCounts,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
-  // res.render('');
 });
 
 
-// jobpage with list of all jobs with users that posted the job and associated # of applicants
+
+router.get("/login", async (req, res) => {
+  try {
+    res.status(200).render("login");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Above, is a simple route to get us to the log in page.
+
+/*
+
+
+
+
+
+
+
+
 router.get("/jobs", async (req, res) => {
   try {
     const jobData = await Job.findAll({
@@ -68,7 +128,6 @@ router.get("/users", async (req, res) => {
   } catch (err) {
     res.status(500).json({message: 'Internal Server Error'});
   }
-});
-
+});*/
 
 module.exports = router;

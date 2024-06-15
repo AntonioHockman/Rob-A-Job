@@ -1,0 +1,87 @@
+      <section class="container-fluid">
+        <header class=" row header d-flex flex-row   ">
+
+            <h1 class=" col-6  logo">Rob-A-Job</h1>
+            <nav class=" col-6 nav d-flex flex-column align-items-end">
+                <a href="/" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Dashboard</a>
+                <a href="/login" class="nav-link">Login</a>
+               
+            </nav>
+        </header>
+    </section>
+
+
+
+
+
+    <section class="container-fluid newUser">
+        <div class="row">
+          <div class="col-12 d-flex flex-row justify-content-center">
+            <form
+              class="signUP col-12 col-sm-10 col-md-8 col-lg-6 d-flex flex-column justify-content-between"
+              action=""
+              method="POST"
+            >
+              <label class="signUpLabel" for="email">Email:</label>
+              <input
+                class="signUpField col-10 col-sm-11 col-md-10 col-lg-11"
+                type="text"
+                name="email"
+                id="email"
+              />
+    
+              <div class="passWordArea">
+                <label class="signUpLabel password col-12" for="password"
+                  >Password:</label
+                >
+                <input
+                  class="signUpField col-10 col-sm-11 col-md-10 col-lg-11"
+                  type="password"
+                  name="password"
+                  id="password"
+                />
+                <span class="eyeIcon password-toggle-icon"
+                  ><i class="fas fa-eye"></i
+                ></span>
+              </div>
+              
+
+              <div class=" selectValues">
+
+                <label for="userType">Choose a account type:</label>
+                <select class=" newTop col-12" name="userType" id="userType">
+                    <option value="">Hello!</option>
+                    <option value="Employer">Employer</option>
+                    <option value="Applicant ">Applicant </option>
+                </select>
+
+              <!--<h3 class="alert">Please Fill All Entries! </h3>-->
+
+            </div>
+
+
+
+
+            <div
+              class="buttonArea d-flex flex-row justify-content-between align-items-center"
+            >
+              <button
+                type="submit"
+                class="formButtons btn1 col-5 btn btn-secondary"
+              >
+                Sign Up
+              </button>
+              <button
+                type="submit"
+                class="formButtons btn2 col-5 btn btn-secondary"
+              >
+                Log In
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </section>
+
+  <script src="../js/login.js"></script>

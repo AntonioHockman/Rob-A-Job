@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const { User, Job, Applicant } = require("../models");
-//const withAuth = require('../utils/auth');
-
+const withAuth = require('../utils/auth');
 
 router.get("/", async (req, res) => {
   try {
@@ -54,8 +53,10 @@ router.get("/", async (req, res) => {
 
 // Above, is the route that takes us to the applicant home page
 
-router.get("/employer", async (req, res) => {
+router.get("/employer", withAuth, async (req, res) => {
   try {
+    const userId = req.session.userId;
+
     const jobData = await Job.findAll({
       include: [
         {
@@ -96,6 +97,7 @@ router.get("/employer", async (req, res) => {
 
     res.status(200).render("employerhome", {
       jobDataWithCounts,
+      userId
     });
   } catch (err) {
     console.log(err);
@@ -104,8 +106,6 @@ router.get("/employer", async (req, res) => {
 });
 
 // Above is the route that takes us to the employer home page
-
-
 
 router.get("/login", async (req, res) => {
   try {
@@ -117,28 +117,75 @@ router.get("/login", async (req, res) => {
 
 // Above is the route that takes us to the log in page
 
+router.post("/login/user", async (req, res) => {
+  try {
+    const dbUserData = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    if (!dbUserData) {
+      res
+        .status(400)
+        .json({ message: "Incorrect email or password. Please try again!" });
+      return;
+    }
+
+    const validPassword = await dbUserData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: "Incorrect email or password. Please try again!" });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      req.session.userId = dbUserData.id;
+
+      res
+        .status(200)
+        .json({ user: dbUserData, message: "You are now logged in!" });
+    });
 
 
 
-/*
-router.get("/user", (req, res) => {
-  // Check if session exists
-  if (req.session.views) {
-    req.session.views++;
-  } else {
-    req.session.views = 1;
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
-
-  res.send(`You have visited this page ${req.session.views} times.`);
 });
-*/
-
-// Above is our test for sessions
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
 
 module.exports = router;

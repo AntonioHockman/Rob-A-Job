@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, Job, Applicant } = require("../../models");
+const withAuth = require('../../utils/auth');
 
 router.get("/:id", async (req, res) => {
   try {
@@ -36,8 +37,9 @@ router.get("/:id", async (req, res) => {
 
 // Above is a route to get the data for a certain user and display their data on their dash board.
 
-router.get("/employer/:id", async (req, res) => {
+router.get("/employer/:id", withAuth, async (req, res) => {
   try {
+    const userId = req.session.userId;
     const userData = await User.findByPk(req.params.id, {
       include:[{ model:Job, include:[{model:Applicant, include:[{model:User, attributes: { exclude: ["password"] } }]}]}]
       
@@ -55,6 +57,7 @@ router.get("/employer/:id", async (req, res) => {
 
     res.status(200).render("employerdash", {
       newUserData,
+      userId
     });
   } catch (err) {
     res.status(500).json(err);
@@ -65,10 +68,11 @@ router.get("/employer/:id", async (req, res) => {
 
 
 
-router.get("/employers/create", async (req, res) => {
+router.get("/employers/create", withAuth, async (req, res) => {
   try {
-  
+    const userId = req.session.userId;
     res.status(200).render("createjob", {
+      userId
       
     });
   } catch (err) {

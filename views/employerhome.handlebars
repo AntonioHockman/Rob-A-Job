@@ -3,7 +3,7 @@
 
         <h1 class=" col-6  logo">Rob-A-Job</h1>
         <nav class=" col-6 nav d-flex flex-column align-items-end">
-            <a href="/" class="nav-link">Home</a>
+            <a href="/employer" class="nav-link">Home</a>
             <a href="#" class="nav-link">Dashboard</a>
             <a href="/login" class="nav-link">Login</a>
             
@@ -22,7 +22,7 @@
 
 
 
-        <div class="  col-11 col-sm-8 col-md-5 col-lg-3    d-flex flex-column cardHeight cardHeight  card">
+        <div class="  col-11 col-sm-8 col-md-5 col-lg-3    d-flex flex-column     card">
             <div class="applicant-count" id=>
                 Applicants: {{ job.totalApplicants}}
             </div>
@@ -31,7 +31,7 @@
                 <p class="card-text">
                    {{job.description}}
                 </p>
-                <a href="/api/ajob/{{job.id}}" class="btn btn-primary">VIEW JOB</a>
+                <a href="/api/mjob/{{job.id}}" class="btn btn-primary">VIEW JOB</a>
             </div>
 
             <div class="comment-section">

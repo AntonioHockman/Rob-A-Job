@@ -47,6 +47,11 @@ body {
   overflow: hidden;
   margin: 1rem 0;
   background-color: #fff;
+  
+}
+
+
+.cardHeight{
   height: 600px;
 }
 

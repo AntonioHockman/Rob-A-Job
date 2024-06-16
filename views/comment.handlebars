@@ -1,0 +1,106 @@
+<section class="container-fluid">
+  <header class="row header d-flex flex-row">
+
+    <h1 class="col-6 logo">Rob-A-Job</h1>
+    <nav class="col-6 nav d-flex flex-column align-items-end">
+      <a href="/" class="nav-link">Home</a>
+      <a href="#" class="nav-link">Dashboard</a>
+      <a href="#" class="nav-link">LogOut</a>
+
+    </nav>
+  </header>
+</section>
+
+
+
+
+
+<section class="container-fluid">
+
+  <div class="row d-flex justify-content-center">
+
+    <div class="col-11 col-md-10 col-lg-8 d-flex flex-column card">
+      <div class="applicant-count" id>
+        Applicants: {{newJobData.applicants.length}}
+      </div>
+      <div class="card-body">
+
+        <h1>{{newJobData.company_name}}</h1>
+        <h5 class="card-title">
+          <br />{{newJobData.position_title}}</h5>
+        <p class="card-text">
+
+          <br />{{newJobData.description}}
+
+        </p>
+
+        <p>
+          <br />
+          <span class="title">Responsibilities:</span><br />
+
+          <br />{{newJobData.responsibilities}}
+
+        </p>
+
+        <p>
+          <br /><span class="title">Qualifications:</span><br />
+
+          <br />{{newJobData.qualifications}}
+
+        </p>
+
+        <p>
+          <br /><span class="title">Salary:</span><br />
+
+          <br />{{newJobData.salary}}
+
+        </p>
+
+        <p>
+          <br /><span class="title">Schedule:</span><br />
+
+          <br />{{newJobData.schedule_info}}
+
+        </p>
+
+        <p>
+          <br /><span class="title">Location:</span><br />
+          <br />{{newJobData.location}}
+
+        </p>
+
+        <br /><div class="d-flex flex-row justify-content-between">
+          <a href="" class="col-5 col-sm-4 col-md-3 btns btn btn-primary">View
+            Comments</a>
+          <button class="col-5 col-sm-4 col-md-3 btns btn btn-primary">Apply Now</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="posts container-fluid">
+  <div class="row d-flex justify-content-center">
+
+    <form
+      action=""
+      method="POST"
+      class="col-11 col-sm-8 commentForm d-flex flex-column justify-content-center"
+    >
+      <label class="commentLabel col-12" for="comment">Comment:</label>
+      <textarea
+        class="col-12 commmentText"
+        name="comment"
+        id="comment"
+      ></textarea>
+      <button type="submit" class="commentButton col-7 btn btn-secondary">
+        Comment
+      </button>
+    </form>
+  </div>
+</section>
+
+<script src="../js/comment.js"></script>

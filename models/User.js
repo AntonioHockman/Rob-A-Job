@@ -1,11 +1,18 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
-const bcrypt = require("bcrypt");
+const argon2 = require('argon2');
 
 // Above, are our requried impots for this model
+// We use argon 2 instead of bycrypt 
 
 
-class User extends Model {}
+class User extends Model {
+
+  checkPassword(loginPw) {
+    return argon2.verify(this.password, loginPw);
+  }
+
+}
 
 User.init(
   {
@@ -45,12 +52,12 @@ User.init(
   {
     hooks: {
       beforeCreate: async (user) => {
-        user.password = await bcrypt.hash(user.password, 10);
+        user.password = await argon2.hash(user.password);
         return user;
       },
       beforeUpdate: async (user) => {
         if (user.changed("password")) {
-          user.password = await bcrypt.hash(user.password, 10);
+          user.password = await argon2.hash(user.password);
           return user;
         }
       },

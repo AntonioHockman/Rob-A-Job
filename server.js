@@ -3,17 +3,36 @@ const express = require('express');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
+const session = require('express-session');
+const helpers = require('./utils/auth');
+
+// Above, we import all of our packages.
 
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 // ABove is a instance of our server and the recognized port.
 
+
+
+
+const sess = {
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false,
+};
+
+app.use(session(sess));
+
+// Above, we create sessions and pass our secret from our .env file.
+
+const hbs = exphbs.create({helpers});
+
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 //Above is middle ware we use for handle bars.
+
 
 
 

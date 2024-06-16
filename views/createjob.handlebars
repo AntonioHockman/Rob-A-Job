@@ -1,0 +1,75 @@
+
+
+<section class="container-fluid">
+    <header class=" row header d-flex flex-row   ">
+
+        <h1 class=" col-6  logo">Rob-A-Job</h1>
+        <nav class=" col-6 nav d-flex flex-column align-items-end">
+            <a href="/employer" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Dashboard</a>
+            <a href="" class="nav-link">LogOut</a>
+            
+        </nav>
+    </header>
+</section>
+
+
+
+
+
+
+
+
+<section class="posts container-fluid">
+    <div class="row d-flex justify-content-center">
+
+        <form action="" method="POST" class="col-11 col-sm-8 commentForm d-flex flex-column justify-content-center">
+            <label class=" postTitle" for="companyName">Company Name: </label>
+            <input class="postTitletext" type="text" id="companyName">
+
+
+            <label class=" postTitle" for="positionTitle">Title for Position: </label>
+            <input class="postTitletext" type="text" id="positionTitle">
+
+
+            <label class=" postTitle" for="salary"> Position Salary: </label>
+            <input class="postTitletext" type="text" id="salary">
+
+
+            <label class=" postTitle" for="location"> Position Location: </label>
+            <input class="postTitletext" type="text" id="location">
+
+
+
+
+
+            <label class="commentLabel col-12" for="position">Position Description:</label>
+            <textarea class="col-12 commmentText" name="position" id="position"></textarea>
+
+
+            <label class="commentLabel col-12" for="responsibilities">Responsibilities:</label>
+            <textarea class="col-12 commmentText" name="responsibilities" id="responsibilities"></textarea>
+
+            <label class="commentLabel col-12" for="qualifications">qualifications:</label>
+            <textarea class="col-12 commmentText" name="qualifications" id="qualifications"></textarea>
+
+
+            <label class="commentLabel col-12" for="schedule">Schedule:</label>
+            <textarea class="col-12 commmentText" name="schedule" id="schedule"></textarea>
+
+
+            <button type="submit" class="commentButton col-7 btn btn-secondary">
+                Create Post
+            </button>
+
+
+            <!--<h3 class=" emergency    alert">Please Fill All Entries! </h3>-->
+
+
+
+
+        </form>
+    </div>
+</section>
+
+<script src="/js/createjob.js"></script>

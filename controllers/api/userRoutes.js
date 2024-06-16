@@ -1,5 +1,84 @@
-const router = require('express').Router();
-const User = require('../../models/User');
+const router = require("express").Router();
+const { User, Job, Applicant } = require("../../models");
+
+router.get("/:id", async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.params.id, {
+      include: [
+        {
+          model: Applicant,
+          include: [
+            {
+              model: Job,
+              include: [{ model: Applicant, include: [{ model: User }] }],
+            },
+            { model: User, attributes: { exclude: ["password"] } },
+          ],
+        },
+      ],
+    });
+
+    if (!userData) {
+      res.status(404).json({ message: "No data found!" });
+      return;
+    }
+
+    const newUserData = userData.get({ plain: true });
+
+    res.status(200).render("applicantdash", {
+      newUserData,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+// Above is a route to get the data for a certain user and display their data on their dash board.
+
+router.get("/employer/:id", async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.params.id, {
+      include:[{ model:Job, include:[{model:Applicant, include:[{model:User, attributes: { exclude: ["password"] } }]}]}]
+      
+    });
+
+    if (!userData) {
+      res.status(404).json({ message: "No data found!" });
+      return;
+    }
+
+    const newUserData = userData.get({ plain: true });
+
+    //res.status(200).json(newUserData);
+
+
+    res.status(200).render("employerdash", {
+      newUserData,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Above is a route to get the data for a certain user and display their data on their employer board.
+
+
+
+router.get("/employers/create", async (req, res) => {
+  try {
+  
+    res.status(200).render("createjob", {
+      
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+//Above is a route to get the data us the page the employer uses to create a job.
+
 
 
 

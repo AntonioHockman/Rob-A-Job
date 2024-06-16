@@ -66,6 +66,39 @@ router.get("/ajob/:id", async (req, res) => {
 
 
 
+router.get("/mjob/:id/update", async (req, res) => {
+  try {
+    const jobData = await Job.findByPk(req.params.id, {
+      
+    });
+
+    if (!jobData) {
+      res.status(404).json({ message: "No data found!" });
+      return;
+    }
+
+    const newJobData = jobData.get({ plain: true });
+
+    //res.status(200).json(newJobData);
+
+
+    res.status(200).render("updatejob", {
+      newJobData,
+    })
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+// Above, is a route to get us to the updat page for a certain employers job. 
+
+
+
+
+
+
+
 
 
 

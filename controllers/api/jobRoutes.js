@@ -1,11 +1,13 @@
 const router = require('express').Router();
 const { User, Job, Applicant } = require("../../models");
+const withAuth = require('../../utils/auth');
 
 
 
 
-router.get("/mjob/:id", async (req, res) => {
+router.get("/mjob/:id", withAuth, async (req, res) => {
   try {
+    const userId = req.session.userId;
     const jobData = await Job.findByPk(req.params.id, {
       include: [
         {
@@ -24,6 +26,7 @@ router.get("/mjob/:id", async (req, res) => {
 
     res.status(200).render("mansinglejob", {
       newJobData,
+      userId
     });
   } catch (err) {
     res.status(500).json(err);
@@ -66,8 +69,9 @@ router.get("/ajob/:id", async (req, res) => {
 
 
 
-router.get("/mjob/:id/update", async (req, res) => {
+router.get("/mjob/:id/update", withAuth, async (req, res) => {
   try {
+    const userId = req.session.userId;
     const jobData = await Job.findByPk(req.params.id, {
       
     });
@@ -84,6 +88,7 @@ router.get("/mjob/:id/update", async (req, res) => {
 
     res.status(200).render("updatejob", {
       newJobData,
+      userId
     })
   } catch (err) {
     res.status(500).json(err);

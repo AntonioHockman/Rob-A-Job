@@ -50,7 +50,7 @@ const jobData = [
         responsibilities:"Work with U.S. based development team to create new product features using HTML5, CSS, JavaScript, PHP, and MySQL.Communicate project status to team, including progress or blocks.Produce project estimates during development process including hours required.Work with end users to gather requirements and document feedback.Utilize Git for version control of projects",
         qualifications:"Minimum of 2 years of PHP / MySQL web development required. Experience with HTML5, CSS, Bootstrap, and Git preferred.Excellent written and verbal communication skills in English language",
         location:"REMOTE",
-        user_id:"4"
+        user_id: 4
     },
     {   
         //job 5
@@ -62,7 +62,7 @@ const jobData = [
         responsibilities:"Web App Development: Design, develop troubleshoot, and implement code for the website application environment, working with digital designers and other members of the team to develop website concepts, interface design, and website architecture. Deploy web-based application systems using leading industry tools and techniques. Research, test, build, and coordinate the integration of new products per production requirements and client requirements. Client Collaboration: Work closely with clients to understand their business requirements and translate them into web applications.",
         qualifications:" Bachelor's degree in Computer Science, Information Systems, or related field. Minimum of 7 years of experience in a Web Application Development role within a website design, development and management environment. Proficient in HTML5, CSS3, JavaScript, JSON, Twig, and PHP. Experience developing and consuming RESTful APIs.",
         location:"REMOTE",
-        user_id:"3"
+        user_id: 3
     },
     {   
         //job 6
@@ -74,7 +74,7 @@ const jobData = [
         responsibilities:"Design, develop, test and validate full-stack software solutions for our clients primarily using the C#, ASP.NET, SQL stack Update, test, debug and maintain existing software solutions Guide junior engineers by helping to design solutions for their projects and mentor them through technical challenges Work with project managers to refine requirements documents and proposals while providing accurate and reliable estimations Collaborate with clients directly using our project management and collaboration tools to answer questions, provide support and work through the details of your projects and tasks. Lead and contribute to all phases of a project including discovery, requirements grooming, development, testing, release and maintenance. Understand client objectives and manage their expectations to translate those objectives into reliable, effective and sustainable technology solutions",
         qualifications:"2-5+ years of experience in C# .NET MVC, SQL Previous experience with PHP, Azure, Web API Integrations, Systems Automation, ETL Routines. Very strong software architecture and problem solving skills.Self-motivated, extremely detail oriented and analytical. Propensity to build intuitive solutions paying close attention to user experience details and nuance.Proficient working with version control systems such as Git.Ability to lead multiple technical projects simultaneously with limited supervision.Strong documentation and communication (written and verbal) skills. Ability to convey highly technical concepts and solutions to non-technical stakeholders.Solid understanding of database design, data automation and administration.US based programmer",
         location:"REMOTE",
-        user_id:"3"
+        user_id: 3 
     },
 
 ]

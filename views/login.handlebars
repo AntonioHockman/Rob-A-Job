@@ -22,6 +22,7 @@
               class="signUP col-12 col-sm-10 col-md-8 col-lg-6 d-flex flex-column justify-content-between"
               action=""
               method="POST"
+              id="login-form"
             >
               <label class="signUpLabel" for="email">Email:</label>
               <input
@@ -41,13 +42,13 @@
                   name="password"
                   id="password"
                 />
-                <span class="eyeIcon password-toggle-icon"
-                  ><i class="fas fa-eye"></i
+                <span class="eyeIcon password-toggle-icon" id="iconSpan"
+                  ><i class="fas fa-eye"  ></i
                 ></span>
               </div>
               
 
-              <div class=" selectValues">
+              <div class=" selectValues" id="alert">
 
                 <label for="userType">Choose a account type:</label>
                 <select class=" newTop col-12" name="userType" id="userType">
@@ -69,12 +70,14 @@
               <button
                 type="submit"
                 class="formButtons btn1 col-5 btn btn-secondary"
+                id="signUpBtn"
               >
                 Sign Up
               </button>
               <button
                 type="submit"
                 class="formButtons btn2 col-5 btn btn-secondary"
+                id="logInBtn"
               >
                 Log In
               </button>

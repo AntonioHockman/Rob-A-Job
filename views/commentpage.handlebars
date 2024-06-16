@@ -1,0 +1,136 @@
+<section class="container-fluid">
+    <header class="row header d-flex flex-row">
+
+        <h1 class="col-6 logo">Rob-A-Job</h1>
+        <nav class="col-6 nav d-flex flex-column align-items-end">
+            <a href="/" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Dashboard</a>
+            <a href="#" class="nav-link">LogOut</a>
+
+        </nav>
+    </header>
+</section>
+
+
+<section class="container-fluid">
+
+  <div class="row d-flex justify-content-center">
+
+    <div class="col-11 col-md-10 col-lg-8 d-flex flex-column card">
+      <div class="applicant-count" id>
+        Applicants: {{newJobData.applicants.length}}
+      </div>
+      <div class="card-body">
+
+        <h1>{{newJobData.company_name}}</h1>
+        <h5 class="card-title">
+          <br />{{newJobData.position_title}}</h5>
+        <p class="card-text">
+
+          <br />{{newJobData.description}}
+
+        </p>
+
+        <p>
+          <br />
+          <span class="title">Responsibilities:</span><br />
+
+          <br />{{newJobData.responsibilities}}
+
+        </p>
+
+        <p>
+          <br /><span class="title">Qualifications:</span><br />
+
+          <br />{{newJobData.qualifications}}
+
+        </p>
+
+        <p>
+          <br /><span class="title">Salary:</span><br />
+
+          <br />{{newJobData.salary}}
+
+        </p>
+
+        <p>
+          <br /><span class="title">Schedule:</span><br />
+
+          <br />{{newJobData.schedule_info}}
+
+        </p>
+
+        <p>
+          <br /><span class="title">Location:</span><br />
+          <br />{{newJobData.location}}
+
+        </p>
+
+        <br /><div class="d-flex flex-row justify-content-between">
+          <a href="/api/comment/{{newJobData.id}}" class="col-5 col-sm-4 col-md-3 btns btn btn-primary">Add
+            Comment</a>
+          <button class="col-5 col-sm-4 col-md-3 btns btn btn-primary">Apply Now</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="container-fluid">
+
+    <div class="     row d-flex justify-content-center">
+
+
+        <div class="   col-11  col-md-10 col-lg-8    d-flex flex-column justify-content-center     card">
+            <div class="applicant-count" id=>
+                Comments: {{newJobData.comments.length}}
+            </div>
+            <div class="card-body d-flex flex-column justify-content-start">
+
+                <h1>Comments:</h1>
+
+                <ul class=" list right d-flex col-12 flex-column justify-content-start ">
+                        {{#each newJobData.comments as |jobComment|}}
+
+            <br />
+            <li class="line col-11">
+              <span class="space">By:
+                {{jobComment.user.first_name}}
+                {{jobComment.user.last_name}}</span><br /><span
+                class="space top"
+              >Comment:</span>
+              <br />
+              {{jobComment.comment_text}}
+              <br />
+              <a href="#" class="commentDelete btn btn-primary">Delete</a>
+            </li>
+            <br />
+
+          {{/each}}
+
+                    
+
+
+
+
+
+                </ul>
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</section>

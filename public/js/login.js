@@ -7,6 +7,8 @@ const loginFormHandler = async (event) => {
   const userType = document.querySelector("#userType").value;
   const alertDiv = document.querySelector("#alert");
 
+  // Above, we grap all our input variables
+
   if (!email || !password || !userType) {
     const h3EL = document.createElement("h3");
     h3EL.classList.add("alert");
@@ -15,9 +17,11 @@ const loginFormHandler = async (event) => {
     alertDiv.append(h3EL);
 
     setTimeout(() => {
-      h3EL.remove(); // Removes the alert element after 5 seconds
+      h3EL.remove(); // Removes the alert element after 5 seconds.
     }, 2000);
   }
+
+  // Above, we chack if all our selected elements exist.
 
   if (userType === "Employer") {
     const response = await fetch("/login/user", {
@@ -32,6 +36,7 @@ const loginFormHandler = async (event) => {
       alert("Failed to log in.");
     }
   }
+  // Above, is to log in if the user chooses Employer to log in.
 
   if (userType === "Applicant") {
     const response = await fetch("/login/user", {
@@ -46,6 +51,8 @@ const loginFormHandler = async (event) => {
       alert("Failed to log in.");
     }
   }
+
+  // Above, is to log in if the user chooses Applicant to log in.
 };
 
 function showPassword() {
@@ -59,6 +66,7 @@ function showPassword() {
     iconSpan.innerHTML = '<i class="fas fa-eye"></i>'; // Change icon to show regular eye
   }
 }
+// Above, is a function to show the user password.
 
 document.addEventListener("DOMContentLoaded", function () {
   document
@@ -67,3 +75,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelector("#iconSpan").addEventListener("click", showPassword);
 });
+
+// Above, we wait till the document is loaded before adding any of our listeners.

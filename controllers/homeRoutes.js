@@ -139,6 +139,10 @@ router.post("/login/user", async (req, res) => {
       },
     });
 
+
+    // Above we find a user with the same email 
+
+
     if (!dbUserData) {
       res
         .status(400)
@@ -155,6 +159,8 @@ router.post("/login/user", async (req, res) => {
       return;
     }
 
+    // Above, we check if the password matches the user email
+
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.userId = dbUserData.id;
@@ -165,7 +171,7 @@ router.post("/login/user", async (req, res) => {
     });
 
 
-
+      // Above, we save log the user in and save to sessions. 
 
   } catch (err) {
     console.log(err);
@@ -173,34 +179,11 @@ router.post("/login/user", async (req, res) => {
   }
 });
 
+// Above, is a route that  logs a existing user im.
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});*/
 
 module.exports = router;

@@ -2,6 +2,9 @@ const router = require("express").Router();
 const { User, Job, Applicant, Comment } = require("../../models");
 const withAuth = require('../../utils/auth');
 
+
+
+
 router.get("/:id", withAuth, async (req, res) => {
   try {
     const userId = req.session.userId;
@@ -199,7 +202,8 @@ router.get("/employer/comments/:id", withAuth, async (req, res) => {
   }
 });
 
-//Above is a rout to get to the employer comment page. 
+//Above is a route to get to the employer comment page. 
+
 
 
 

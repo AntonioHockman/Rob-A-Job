@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Job, Applicant } = require("../../models");
+const { User, Job, Applicant,Comment } = require("../../models");
 const withAuth = require('../../utils/auth');
 
 router.get("/:id", withAuth, async (req, res) => {
@@ -134,6 +134,63 @@ router.post("/create", async (req, res) => {
 
 
 
+router.post('/comment', withAuth, async (req, res) => {
+  
+  try {
+
+    const comment_text = req.body.comment_text
+    const job_id = req.body.job_id
+    const  user_id= req.session.userId;
+    // Above, we attach the body of the request to a variable 
+
+      console.log(comment_text);
+      console.log(job_id);
+      console.log(user_id);
+
+    if(!comment_text|| !job_id){
+      res
+        .status(400)
+        .json({ message: "No data found" });
+      return;
+    };
+
+
+
+    const newComment = await Comment.create({comment_text,job_id,user_id})
+
+
+    res.status(200).json("New Comment Created");
+
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+
+
+
+
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -156,17 +213,5 @@ router.post('/logout', (req, res) => {
 
 
 
-/*
-
-// logging out
-router.post('/users', (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});*/
 
 module.exports = router;

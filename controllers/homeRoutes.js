@@ -2,8 +2,10 @@ const router = require("express").Router();
 const { User, Job, Applicant } = require("../models");
 const withAuth = require('../utils/auth');
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
+    const userId = req.session.userId;
+
     const jobData = await Job.findAll({
       include: [
         {
@@ -44,6 +46,7 @@ router.get("/", async (req, res) => {
 
     res.status(200).render("homepage", {
       jobDataWithCounts,
+      userId
     });
   } catch (err) {
     console.log(err);
@@ -178,7 +181,8 @@ router.post("/login/user", async (req, res) => {
 
 
 
-router.post('/logout', (req, res) => {
+
+/*router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -186,6 +190,6 @@ router.post('/logout', (req, res) => {
   } else {
     res.status(404).end();
   }
-});
+});*/
 
 module.exports = router;

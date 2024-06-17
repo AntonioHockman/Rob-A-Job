@@ -37,8 +37,9 @@ router.get("/mjob/:id", withAuth, async (req, res) => {
 
 
 
-router.get("/ajob/:id", async (req, res) => {
+router.get("/ajob/:id", withAuth, async (req, res) => {
   try {
+    const userId = req.session.userId;
     const jobData = await Job.findByPk(req.params.id, {
       include: [
         {
@@ -57,6 +58,7 @@ router.get("/ajob/:id", async (req, res) => {
 
     res.status(200).render("appsinglejob", {
       newJobData,
+      userId
     });
   } catch (err) {
     res.status(500).json(err);

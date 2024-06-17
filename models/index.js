@@ -8,18 +8,20 @@ Job.belongsTo(User, {
   foreignKey: "user_id",
 });
 
-// Job belongs to User.
+// Job belongs to User relation 
 
 User.hasMany(Job, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
 });
-// user  have many job posts
+// user  have many job posts relation 
 
 
 Applicant.belongsTo(Job, {
   foreignKey: "job_id",
 });
+
+// Applicant belongs to job relation 
 
 Job.hasMany(Applicant, {
   foreignKey: "job_id",
@@ -27,29 +29,40 @@ Job.hasMany(Applicant, {
 });
 
 
+// Job has many applicants relation 
+
+
 Applicant.belongsTo(User, {
   foreignKey: "user_id",
 });
 
+
+// Applicant belongs to user relation 
 
 User.hasMany(Applicant, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
 });
 
-//comment to job relations below
+//user has many applicants relation 
 
 Job.hasMany(Comment,{
-  foreignKey:"job_id" } );
+  foreignKey:"job_id",
+  onDelete: "CASCADE"
+});
+
+// job has many comments relation 
+
 
 Comment.belongsTo(Job,{
 foreignKey:"job_id"
 })
 
-//user to comment relation
+//comment belongs to user relation 
 
 User.hasMany(Comment,{
-  foreignKey:"user_id"
+  foreignKey:"user_id",
+  onDelete: "CASCADE"
 });
 
 

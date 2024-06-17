@@ -110,6 +110,17 @@ router.get("/employer", withAuth, async (req, res) => {
 
 // Above is the route that takes us to the employer home page
 
+router.get("/create", async (req, res) => {
+  try {
+    res.status(200).render("createaccount");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Above, is a route to get us to our creat account page.
+
+
 router.get("/login", async (req, res) => {
   try {
     res.status(200).render("login");

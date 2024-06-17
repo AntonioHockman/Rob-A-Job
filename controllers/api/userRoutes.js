@@ -54,7 +54,7 @@ router.get("/employer/:id", withAuth, async (req, res) => {
 
     const newUserData = userData.get({ plain: true });
 
-    //res.status(200).json(newUserData);
+    
 
 
     res.status(200).render("employerdash", {
@@ -87,69 +87,66 @@ router.get("/employers/create", withAuth, async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// creates a new user
-/*router.post('/users', async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
-    const userData = await User.create(req.body);
+    const dbUserData = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    if (dbUserData) {
+      res
+        .status(400)
+        .json({ message: " Email already exists. Please try again!" });
+      return;
+    }
+    // ABove, we check if the new users email already exists.
+    
+    const userData = req.body 
+    // Above, we attach the body of the request to a variable 
+
+    const newUser = await User.create(userData)
+    // Above, we create a user 
+
+
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+      req.session.loggedIn = true;
+      req.session.userId = newUser.id;
 
-    res.status(200).json(userData);
+      res
+        .status(200)
+        .json({ user: newUser, message: "You are now logged in!" });
     });
+    // Above, we save the new user in sessions as logged in and user id.
+    // loggedIn and userId are variabels we create with sessions. 
+
+
+
   } catch (err) {
-    res.status(500).json({message: 'Internal Server Error'});
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
+// Above, is a route to create a new user. 
 
-// logging in
-router.post('/users', async (req, res) => {
-  try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
 
-    if (!userData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
 
-    const validPassword = await userData.checkPassword(req.body.password);
 
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
 
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
 
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+
+
+
+
+
+
+
+
+
+/*
 
 // logging out
 router.post('/users', (req, res) => {

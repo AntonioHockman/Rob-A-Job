@@ -22,7 +22,7 @@
 
 
 
-        <div class="  col-11 col-sm-8 col-md-5 col-lg-3    d-flex flex-column     card">
+        <div class="  col-11 col-sm-8 col-md-5 col-lg-3    d-flex flex-column     card" id="{{job.id}}">
             <div class="applicant-count" id=>
                 Applicants: {{ job.totalApplicants}}
             </div>
@@ -35,9 +35,9 @@
             </div>
 
             <div class="comment-section">
-                <form class="comment-form">
-                    <textarea class="comment-input" placeholder="Add a comment..."></textarea>
-                    <button type="submit" class="btn btn-secondary">
+                <form  class="comment-form  homeComment  ">
+                    <textarea class="comment-input" placeholder="Add a comment..." id="commentText"  ></textarea>
+                    <button  class=" submitBTN   btn btn-secondary">
                         Post Comment
                     </button>
                 </form>
@@ -52,4 +52,4 @@
 </section>
 
 <script src="/js/logout.js"></script>
-<script src="/js/home.js"></script>
+<script src="/js/ehome.js"></script>

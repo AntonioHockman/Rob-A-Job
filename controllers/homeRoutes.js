@@ -179,9 +179,7 @@ router.post("/login/user", async (req, res) => {
   }
 });
 
-// Above, is a route that  logs a existing user im.
-
-
+// Above, is a route that  logs a existing user in.
 
 
 

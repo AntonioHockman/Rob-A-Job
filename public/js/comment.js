@@ -2,7 +2,7 @@ const handleCommentSubmit = async (event) => {
     event.preventDefault();
   
     // find comment input
-    const commentText = document.querySelector('commentText').value.trim();
+    const commentText = document.querySelector('.commentText').value.trim();
   
     if (!commentText) {
       alert('Please enter a comment.');
@@ -24,7 +24,7 @@ const handleCommentSubmit = async (event) => {
       }
   
       // reset input area
-      document.querySelector('commentText').value = '';
+      document.querySelector('.commentText').value = '';
       
     // reload page after adding comment
       window.location.reload();

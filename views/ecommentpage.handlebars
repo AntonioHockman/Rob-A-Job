@@ -91,7 +91,7 @@
         <h1>Comments:</h1>
         <ul class="list right d-flex col-12 flex-column justify-content-start">
           {{#each newJobData.comments as |jobComment|}}<br />
-            <li class="line col-11">
+            <li class="line col-11"  id="{{jobComment.user.id}}"  data-id="{{jobComment.id}}"  >
               <span class="space">By:
                 {{jobComment.user.first_name}}
                 {{jobComment.user.last_name}}</span><br />
@@ -101,7 +101,7 @@
               <span class="space top">Comment:</span><br />
               {{jobComment.comment_text}}
               <br />
-              <a href="#" class="commentDelete btn btn-primary">Delete</a>
+              <a id="deleteBTN" class="commentDelete btn btn-primary">Delete</a>
             </li>
             <br />
           {{/each}}
@@ -111,4 +111,5 @@
   </div>
 </section>
 
+<script src="/js/edeletecomment.js"></script>
 <script src="/js/logout.js"></script>

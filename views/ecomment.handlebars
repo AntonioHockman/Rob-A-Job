@@ -87,36 +87,12 @@
     <form action="/api/comment/employer/{{newJobData.id}}" method="POST" class="col-11 col-sm-8 commentForm d-flex flex-column justify-content-center">
       <label class="commentLabel col-12" for="comment_text">Comment Text:</label>
       <textarea class="col-12 commmentText" name="comment_text" id="comment_text" placeholder="Enter text here"></textarea>
-      <button type="submit" class="commentButton col-7 btn btn-secondary">Comment</button>
+      <button  class="commentButton col-7 btn btn-secondary" id="commentBTN">Comment</button>
     </form>
   </div>
 </section>
 
-{{!-- <section class="posts container-fluid">
-  <div class="row d-flex justify-content-center">
 
-    <form
-      action=""
-      method="POST"
-      class="col-11 col-sm-8 commentForm d-flex flex-column justify-content-center"
-    >
-      <label class="commentLabel col-12" for="comment">Comment:</label>
-      <textarea
-        class="col-12 commmentText"
-        name="comment"
-        id="comment"
-      >Title:</textarea>
-      <textarea
-        class="col-12 commmentText"
-        name="comment"
-        id="comment"
-      >Text:</textarea>
-      <button type="submit" class="commentButton col-7 btn btn-secondary">
-        Comment
-      </button>
-    </form>
-  </div>
-</section> --}}
 
 <script src="/js/logout.js"></script>
-<script src="/js/comment.js"></script>
+<script src="/js/ecomment.js"></script>

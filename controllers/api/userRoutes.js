@@ -203,6 +203,67 @@ router.post("/logout", (req, res) => {
   }
 });
 
+router.put("/job", async (req,res)=>{
+  try{
+
+    const {
+      company_name,
+      position_title,
+      salary,
+      location,
+      description,
+      responsibilities,
+      qualifications,
+      schedule_info,
+    } = req.body;
+
+    const jobId = req.body.job_id;
+
+
+    if (!jobId) {
+      return res.status(400).json({ message: "Job ID is required" });
+    }
+
+
+    const job = await Job.findByPk(jobId);
+
+    if (!job) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    await job.update({
+      company_name,
+      position_title,
+      salary,
+      location,
+      description,
+      responsibilities,
+      qualifications,
+      schedule_info,
+    });
+
+    res.status(200).json({ message: "Job updated successfully" });
+
+
+
+
+
+  }
+  
+  
+  
+  
+  
+  
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+
+});
+
+
+
 // Above, is our log out route for all users.
 
 module.exports = router;

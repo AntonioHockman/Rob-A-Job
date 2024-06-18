@@ -65,6 +65,75 @@ router.get("/employer/:id", withAuth, async (req, res) => {
 
 // Above is our route to get to the add a comment page for a employer.
 
+
+router.get("/comments/:id", withAuth, async (req, res) => {
+  try {
+    const userId = req.session.userId;
+    const jobData = await Job.findByPk(req.params.id, {
+      include: [
+        {
+          model: Applicant,
+          include: [{ model: User, attributes: { exclude: ["password"] } }],
+        },
+        {model: Comment, include: [{ model: User, attributes: { exclude: ["password"] } }],  }
+
+
+
+      ],
+    });
+
+    if (!jobData) {
+      res.status(404).json({ message: "No data found!" });
+      return;
+    }
+
+    const newJobData = jobData.get({ plain: true });
+
+    res.status(200).render("commentpage", {
+      newJobData,
+      userId
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+// Above, is a route to get to the applicant comment page 
+
+router.get("/employer/comments/:id", withAuth, async (req, res) => {
+  try {
+    const userId = req.session.userId;
+    const jobData = await Job.findByPk(req.params.id, {
+      include: [
+        {
+          model: Applicant,
+          include: [{ model: User, attributes: { exclude: ["password"] } }],
+        },
+        {model: Comment, include: [{ model: User, attributes: { exclude: ["password"] } }],  }
+
+
+
+      ],
+    });
+
+    if (!jobData) {
+      res.status(404).json({ message: "No data found!" });
+      return;
+    }
+
+    const newJobData = jobData.get({ plain: true });
+
+    res.status(200).render("ecommentpage", {
+      newJobData,
+      userId
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//Above is a route to get to the employer comment page. 
+
+
 router.post("/employer/:id", withAuth, async (req, res) => {
   try {
     // normal job data
@@ -132,80 +201,8 @@ router.post("/employer/:id", withAuth, async (req, res) => {
   }
 });
 
-module.exports = router;
 
-// above, is route to post a comment on employer comment page
-
-
-router.get("/comments/:id", withAuth, async (req, res) => {
-  try {
-    const userId = req.session.userId;
-    const jobData = await Job.findByPk(req.params.id, {
-      include: [
-        {
-          model: Applicant,
-          include: [{ model: User, attributes: { exclude: ["password"] } }],
-        },
-        {model: Comment, include: [{ model: User, attributes: { exclude: ["password"] } }],  }
-
-
-
-      ],
-    });
-
-    if (!jobData) {
-      res.status(404).json({ message: "No data found!" });
-      return;
-    }
-
-    const newJobData = jobData.get({ plain: true });
-
-    res.status(200).render("commentpage", {
-      newJobData,
-      userId
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-
-router.get("/employer/comments/:id", withAuth, async (req, res) => {
-  try {
-    const userId = req.session.userId;
-    const jobData = await Job.findByPk(req.params.id, {
-      include: [
-        {
-          model: Applicant,
-          include: [{ model: User, attributes: { exclude: ["password"] } }],
-        },
-        {model: Comment, include: [{ model: User, attributes: { exclude: ["password"] } }],  }
-
-
-
-      ],
-    });
-
-    if (!jobData) {
-      res.status(404).json({ message: "No data found!" });
-      return;
-    }
-
-    const newJobData = jobData.get({ plain: true });
-
-    res.status(200).render("ecommentpage", {
-      newJobData,
-      userId
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-//Above is a route to get to the employer comment page. 
-
-
-
+// Above, is route to post a comment on employer comment page
 
 
 

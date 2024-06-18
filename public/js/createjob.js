@@ -14,6 +14,9 @@ const createJobHandler = async (event) => {
     const schedule_info = document.querySelector("#schedule").value.trim();
     const alertDiv = document.querySelector(".alert4")
 
+    // Above, we get all our entries from our form.
+
+
 
     if(!company_name || !position_title || !salary || !location || !description || !responsibilities  || !qualifications || !schedule_info){
       const h3EL = document.createElement("h3");
@@ -26,7 +29,7 @@ const createJobHandler = async (event) => {
         h3EL.remove(); // Removes the alert element after 5 seconds.
       }, 2000);
     }
-
+    // Above is our handler if any entry is missing 
 
 
 
@@ -49,7 +52,7 @@ const createJobHandler = async (event) => {
   } else {
     alert("Failed to make a new Job.");
   }
-
+    // Above we pass all the entries to the body of the request and if the request passes we diresct to the employer home page.
 }
 
 
@@ -63,4 +66,4 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelector("#createJobBTN").addEventListener("click", createJobHandler);
 });
 
-
+// Above, is our event listener .

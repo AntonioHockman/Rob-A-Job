@@ -12,8 +12,9 @@ const updateJobHandler = async (event) => {
   const schedule_info = document.querySelector("#schedule").value.trim();
   const pathArray = window.location.pathname.split('/');
   const job_id = pathArray[pathArray.indexOf('mjob') + 1];
-
-  console.log(job_id);
+  // Above, we get all the entries from our form 
+  //Also, we get the job id from the location of the window 
+  
 
 
 
@@ -40,6 +41,9 @@ const updateJobHandler = async (event) => {
   } else {
     alert("Failed to Update Job.");
   }
+
+  // ABove is a put request and we pass all our entries and the job id in the req body
+  // If the req is good we direct back to the employer home page
 };
 
 

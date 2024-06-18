@@ -1,39 +1,39 @@
-const handleCommentSubmit = async (event) => {
-    event.preventDefault();
+const commentJobPost = async  (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+
+
+ 
+  const comment_text =  document.querySelector("#comment_text").value.trim();
+  const pathArray = window.location.pathname.split('/');
+  const job_id = pathArray[pathArray.length - 1];
+
   
-    // find comment input
-    const commentText = document.querySelector('.commentText').value.trim();
+
   
-    if (!commentText) {
-      alert('Please enter a comment.');
-      return;
-    }
   
-    
-    try {
-      const response = await fetch('/api/comment/:id', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ comment_text: commentText }),
-      });
+  if (!comment_text) {
+    console.log("No comment to Add!")
+  }
+
+
+  const response = await fetch("/api/user/comment", {
+    method: "POST",
+    body: JSON.stringify({ comment_text, job_id }),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (response.ok) {
+    document.location.replace(`/api/comment/comments/${job_id}`);
+  } else {
+    alert("Failed to Post Comment.");
+  }
+
+};
+
+
+document.addEventListener("DOMContentLoaded", function () {
   
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
-      // reset input area
-      document.querySelector('.commentText').value = '';
-      
-    // reload page after adding comment
-      window.location.reload();
-    } catch (error) {
-      console.error('Error adding comment:', error);
-      alert('Failed to add comment. Please try again later.');
-    }
-  };
-  
-  // event listener for form submission
-  document.querySelector('commentButton').addEventListener('submit', handleCommentSubmit);
-  
+
+  document.querySelector("#commentBTN").addEventListener("click", commentJobPost);
+});

@@ -8,7 +8,7 @@ const commentJobPost = async  (event) => {
   const pathArray = window.location.pathname.split('/');
   const job_id = pathArray[pathArray.length - 1];
 
-  
+  // Above, we get the job id from the location of the window
 
   
   
@@ -29,6 +29,8 @@ const commentJobPost = async  (event) => {
     alert("Failed to Post Comment.");
   }
 
+  // Above, we pass the comment text and job id to our api route.
+
 };
 
 
@@ -37,3 +39,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelector("#commentBTN").addEventListener("click", commentJobPost);
 });
+
+// Above is our event listener.

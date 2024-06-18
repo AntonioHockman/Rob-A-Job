@@ -1,43 +1,66 @@
-const createJobHandler = async (jobData) => {
-    try {
-      const response = await fetch('/api/user/employers/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(jobData)
-      });
+const createJobHandler = async (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+
+
   
-      if (response.ok) {
-        // if successful job creation, redirect to homepage
-        document.location.replace("/employer");
-      } else {
-        console.error('Failed to create job:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Failed to create job:', error.message);
+    const company_name = document.querySelector("#companyName").value.trim()
+    const position_title = document.querySelector("#positionTitle").value.trim();
+    const salary = document.querySelector("#salary").value.trim();
+    const location = document.querySelector("#location").value.trim();
+    const description = document.querySelector("#description").value.trim();
+    const responsibilities  = document.querySelector("#responsibilities").value.trim();
+    const qualifications= document.querySelector("#qualifications").value.trim();
+    const schedule_info = document.querySelector("#schedule").value.trim();
+    const alertDiv = document.querySelector(".alert4")
+
+
+    if(!company_name || !position_title || !salary || !location || !description || !responsibilities  || !qualifications || !schedule_info){
+      const h3EL = document.createElement("h3");
+      h3EL.classList.add( "emergency" ,"alert");
+      h3EL.textContent = "Please Fill All Entries!";
+  
+      alertDiv.append(h3EL);
+  
+      setTimeout(() => {
+        h3EL.remove(); // Removes the alert element after 5 seconds.
+      }, 2000);
     }
-  };
-  
-//   selecting job creation form
-  const jobForm = document.querySelector('.commentForm');
+
+
+
+
+
+
+
+
   
 
-  jobForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    // all the inputs for creating a job
-    const jobData = {
-      name: jobForm.querySelector('#companyName').value,
-      title: jobForm.querySelector('#positionTitle').value,
-      salary: jobForm.querySelector('#salary').value,
-      location: jobForm.querySelector('#location').value,
-      description: jobForm.querySelector('#position').value,
-      responsibilites: jobForm.querySelector('#responsibilities').value,
-      qualifications: jobForm.querySelector('#qualifications').value,
-      schedule: jobForm.querySelector('#schedule').value
-    };
-  
-    await createJobHandler(jobData);
+  const response = await fetch("/api/user/newjob", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({company_name,position_title,salary,location,description,responsibilities,qualifications,schedule_info}),
   });
+
+  if (response.ok) {
+    document.location.replace("/employer");
+  } else {
+    alert("Failed to make a new Job.");
+  }
+
+}
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
   
+  document.querySelector("#createJobBTN").addEventListener("click", createJobHandler);
+});
+
+

@@ -6,7 +6,7 @@
       <a href="/" class="nav-link">Home</a>
       <a href="/api/user/{{userId}}" class="nav-link">Dashboard</a>
       <a href="/api/user/logout" class="nav-link" id="logout"   >LogOut</a>
-      <a href="" class="nav-link">Delete ACC.</a>
+      <a href="" class="nav-link" id="deleteBTN" >Delete ACC.</a>
 
     </nav>
   </header>
@@ -17,7 +17,7 @@
   <div class="cardArea row d-flex justify-content-center">
 
     {{#each newUserData.applicants as |applicant|}}
-      <div class="col-11 col-sm-8 col-md-5 col-lg-3 d-flex flex-column card">
+      <div class="col-11 col-sm-8 col-md-5 col-lg-3 d-flex flex-column card"  id="{{applicant.job.id}}" >
         <div class="applicant-count" id>
           Applicants:
           {{applicant.job.applicants.length}}
@@ -30,7 +30,7 @@
 
           <div class="height d-flex flex-row justify-content-between">
             <a href="/api/comment/comments/{{applicant.job.id}}" class="col-5 btns btn btn-primary">View Comments</a>
-            <button class="col-5 btns btn btn-primary">Delete Application</button>
+            <button class="col-5 btns btn btn-primary" id="deleteApp"   >Delete Application</button>
           </div>
 
         </div>
@@ -55,4 +55,6 @@
 
 </section>
 
+
+<script src="/js/delete.js"></script>
 <script src="/js/logout.js"></script>

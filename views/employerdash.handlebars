@@ -7,7 +7,7 @@
       <a href="/api/user/employer/{{userId}}" class="nav-link">Dashboard</a>
       <a href="/api/user/employers/create" class="nav-link"  >Create New post</a>
       <a href="/api/user/logout" class="nav-link"  id="logout"  >LogOut</a>
-      <a href="" class="nav-link">Delete ACC.</a>
+      <a href="" class="nav-link" id="deleteBTN">Delete ACC.</a>
 
     </nav>
   </header>
@@ -18,7 +18,7 @@
   <div class="cardArea row d-flex justify-content-center">
 
     {{#each newUserData.jobs as |job|}}
-      <div class="col-11 col-sm-8 col-md-5 col-lg-3 d-flex flex-column card">
+      <div class="col-11 col-sm-8 col-md-5 col-lg-3 d-flex flex-column card" id="{{job.id}}">
         <div class="applicant-count" id>
           Applicants:
           {{job.applicants.length}}
@@ -35,7 +35,7 @@
 
           <div class="height d-flex flex-row justify-content-between">
             <a href="/api/mjob/{{job.id}}/update" class="col-5 btns btn btn-primary">Update Post</a>
-            <button class="col-5 btns btn btn-primary">Delete Post</button>
+            <button class="col-5 btns btn btn-primary" id="eDeleteJob">Delete Post</button>
           </div>
           
         </div>
@@ -45,4 +45,5 @@
 
   </div>
 </section>
+<script src="/js/delete.js"></script>
 <script src="/js/logout.js"></script>

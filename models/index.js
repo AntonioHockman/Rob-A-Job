@@ -6,6 +6,7 @@ const Comment = require("./Comment");
 
 Job.belongsTo(User, {
   foreignKey: "user_id",
+  onDelete: "CASCADE",
 });
 
 // Job belongs to User relation 
@@ -19,6 +20,7 @@ User.hasMany(Job, {
 
 Applicant.belongsTo(Job, {
   foreignKey: "job_id",
+  onDelete: "CASCADE",
 });
 
 // Applicant belongs to job relation 
@@ -34,6 +36,7 @@ Job.hasMany(Applicant, {
 
 Applicant.belongsTo(User, {
   foreignKey: "user_id",
+  onDelete: "CASCADE",
 });
 
 
@@ -55,7 +58,8 @@ Job.hasMany(Comment,{
 
 
 Comment.belongsTo(Job,{
-foreignKey:"job_id"
+foreignKey:"job_id",
+onDelete: "CASCADE"
 })
 
 //comment belongs to user relation 
@@ -67,7 +71,8 @@ User.hasMany(Comment,{
 
 
 Comment.belongsTo(User,{
-  foreign_key:"user_id"
+  foreign_key:"user_id",
+  onDelete: "CASCADE"
 });
 
 
